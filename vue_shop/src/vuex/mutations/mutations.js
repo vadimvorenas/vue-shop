@@ -6,9 +6,7 @@ export default {
         if (state.cart.length) {
             let isProsuctExists = false
             state.cart.map(function (item) {
-                console.log(item)
                 if (item.id == product.id) {
-                    console.log(item)
                     isProsuctExists = true
                     item.quantity++
                 }
@@ -36,7 +34,6 @@ export default {
     },
     SUM_CART_COST: (state)=> {
         let result = [];
-        console.log('SUM CART COST')
         if (state.cart.length) {
           for (let item of state.cart) {
             result.push(parseFloat(item.price) * item.quantity);

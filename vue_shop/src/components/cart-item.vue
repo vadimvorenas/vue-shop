@@ -17,7 +17,7 @@
       <span class="quantity__btn cart-item__quantity_child" @click="incrementItem">+</span>
       <p class="cart-item__quantity__price cart-item__quantity_child">{{cart_item_data.price}}</p>
     </div>
-    <button @click="deleteFromCart">Delete</button>
+    <button @click="deleteFromCart"><i class="far fa-trash-alt"></i></button>
   </div>
 </template>
 <script>
@@ -38,8 +38,8 @@ export default {
     incrementItem() {
       this.$emit("increment");
     },
-    updateQuantity (e){
-      this.$emit('updateCart', e.target.value)
+    updateQuantity(e) {
+      this.$emit("updateCart", e.target.value);
     }
   },
   created() {},
@@ -108,6 +108,11 @@ export default {
 
   .quantity__btn {
     cursor: pointer;
+    user-select: none;
+    &:active {
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 5px;
+    }
   }
 }
 </style>
