@@ -1,39 +1,22 @@
 <template>
   <div class="v-main-wrapper">
-    <p>{{title}}</p>
-    <catalog></catalog>
-    <cart
-    v-if="CART.length"
-    :cart_data='CART'
-    ></cart>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import Catalog from "./catalog";
-import Cart from "./cart";
-import { mapGetters } from "vuex";
-
 export default {
   name: "v-main-wrapper",
-  components: {
-    Catalog,
-    Cart
-  },
   props: {},
   data() {
     return {
       title: "Main wrapper"
     };
   },
-  computed: {
-    ...mapGetters(["CART"])
-  },
   methods: {},
-  watch: {},
-  mounted() {
-    console.log("Hello main wrapper alive");
-  }
+  watch: {}
 };
 </script>
 
@@ -44,7 +27,28 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 900px;
+  max-width: 1600px;
+  min-width: 300px;
   margin: 0 auto;
+}
+@media screen and (max-width: 992px) {
+  .v-main-wrapper {
+    max-width: 960px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .v-main-wrapper {
+    max-width: 720px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .v-main-wrapper {
+    max-width: 540px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .v-main-wrapper {
+    max-width: 100%;
+  }
 }
 </style>

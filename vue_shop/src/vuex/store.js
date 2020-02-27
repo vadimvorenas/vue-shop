@@ -1,67 +1,20 @@
 import Vue from "vue"
 import Vuex from "vuex"
-import axios from "axios"
+import actions from './actions/actions'
+import mutations from './mutations/mutations'
+import getters from './getters/getters'
 
 Vue.use(Vuex)
 
 let store = new Vuex.Store({
     state: {
         products: [],
-        cart: []
+        cart: [],
+        cart_total_cost: 0
     },
-    mutations: {
-        SET_PRODUCTS_TO_STATE: (state, products) => {
-            state.products = products
-        },
-        SET_CART: (state, product) => {
-            if (state.cart.length) {
-                let isProsuctExists = false
-                state.cart.map(function (item) {
-                    if (item.id == product.id) {
-                        isProsuctExists = true
-                        item.quantity++
-                    }
-                })
-                if (!isProsuctExists) {
-                    state.cart.push(product)
-                }
-            } else {
-                state.cart.push(product)
-            }
-        },
-        REMOVE_FROM_CART: (state, index) => {
-            state.cart.splice(index, 1)
-        }
-    },
-    actions: {
-        GET_PRODUCTS_FROM_API({ commit }) {
-            return axios('https://5e53de4c31b9970014cf7f2f.mockapi.io/products', {
-                method: "GET"
-            })
-                .then((products) => {
-                    commit('SET_PRODUCTS_TO_STATE', products.data)
-                    return products;
-                })
-                .catch((error) => {
-                    console.log(error)
-                    return error
-                })
-        },
-        ADD_TO_CART({ commit }, product) {
-            commit('SET_CART', product)
-        },
-        DELETE_FROM_CART({ commit }, index) {
-            commit('REMOVE_FROM_CART', index)
-        }
-    },
-    getters: {
-        PRODUCTS(state) {
-            return state.products;
-        },
-        CART(state) {
-            return state.cart
-        }
-    }
+    mutations,
+    actions,
+    getters
 })
 
 

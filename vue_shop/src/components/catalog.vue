@@ -1,11 +1,20 @@
 <template>
   <div class="catalog">
-    <catalog-item
-      v-for="product in PRODUCTS"
-      :key="product.id"
-      v-bind:product_data="product"
-      @addToCart="addToCart"
-    ></catalog-item>
+    <router-link :to="{name: 'cart', params: {cart_data: CART}}">
+      <div class="catalog__link_to_cart">
+        <p>Cart: {{CART.length}}</p>
+        <p class="catalog__total_price">Price: {{CART_TOTAL_COST}} $</p>
+      </div>
+    </router-link>
+    <h1>Catalog</h1>
+    <div class="catalog__list">
+      <catalog-item
+        v-for="product in PRODUCTS"
+        :key="product.id"
+        v-bind:product_data="product"
+        @addToCart="addToCart"
+      ></catalog-item>
+    </div>
   </div>
 </template>
 <script>
@@ -22,9 +31,10 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["GET_PRODUCTS_FROM_API", "ADD_TO_CART"]),
+    ...mapActions(["GET_PRODUCTS_FROM_API", "ADD_TO_CART", "EDIT_CART_TOTAL_COST"]),
     addToCart(data) {
-      this.ADD_TO_CART(data)
+      this.ADD_TO_CART(data);
+      this.EDIT_CART_TOTAL_COST();
     }
   },
   mounted() {
@@ -40,18 +50,38 @@ export default {
   },
   created() {},
   computed: {
-    ...mapGetters(["PRODUCTS"])
+    ...mapGetters([
+      "PRODUCTS",
+      "CART",
+      "CART_TOTAL_COST"
+    ])
   },
-  props: {}
+  props: {},
+  watch: {
+    CART: function() {
+      this.EDIT_CART_TOTAL_COST();
+    }
+  }
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .catalog {
-  &_list {
+  &__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+  }
+  &__link_to_cart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: $padding * 0.8 $padding * 2;
+    border: solid 1px gray;
+    p {
+      margin: auto;
+      padding: $padding * 0.8;
+    }
   }
 }
 </style>
