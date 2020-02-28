@@ -22,28 +22,42 @@ export default {
         state.cart.splice(index, 1)
     },
     INCREMENT: (state, index) => {
-        state.cart[index].quantity++
+        let quantity_tmp = checkQuantity(state.cart[index].quantity + 1)
+        state.cart[index].quantity = quantity_tmp
     },
     DECREMENT: (state, index) => {
-        if (state.cart[index].quantity > 1) {
-            state.cart[index].quantity--
-        }
+        let quantity_tmp = checkQuantity(state.cart[index].quantity - 1)
+        state.cart[index].quantity = quantity_tmp
     },
-    UPDATE_CART: (state, index, val) =>{
-        state.cart[index] = val
+    UPDATE_CART: (state, options) => {
+        console.log(options)
+        state.cart[options.index].quantity = checkQuantity(options.val)
     },
-    SUM_CART_COST: (state)=> {
+    SUM_CART_COST: (state) => {
         let result = [];
         if (state.cart.length) {
-          for (let item of state.cart) {
-            result.push(parseFloat(item.price) * item.quantity);
-          }
-          result = result.reduce(function(sum, el) {
-            return sum + el;
-          });
-          state.cart_total_cost = result;
+            for (let item of state.cart) {
+                result.push(parseFloat(item.price) * item.quantity);
+            }
+            result = result.reduce(function (sum, el) {
+                return sum + el;
+            });
+            state.cart_total_cost = result;
         } else {
             state.cart_total_cost = 0;
         }
+    },
+    ADD_SHIPPING: (state, variable) => {
+        state.shipping.push(variable)
+    }
+}
+
+function checkQuantity(quantity) {
+    if (quantity > 50) {
+        return 50
+    } else if (quantity < 1) {
+        return 1
+    } else {
+        return parseFloat(quantity)
     }
 }

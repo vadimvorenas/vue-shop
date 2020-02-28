@@ -10,11 +10,12 @@ let store = new Vuex.Store({
     state: {
         products: [],
         cart: [],
-        cart_total_cost: 0
+        cart_total_cost: 0,
+        shipping:[]
     },
     mutations,
     actions,
-    getters
+    getters,
 })
 
 

@@ -1,11 +1,14 @@
-@import 'variables.scss';
-
+@import "variables.scss";
 
 .btn {
-    padding: $padding $padding*2;
-    background: $green-bg;
-    color: white;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: $padding $padding * 2;
+  background: $green-bg;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nowrap {
+  white-space: nowrap;
 }

@@ -1,7 +1,8 @@
 <template>
   <div class="cart">
     <router-link :to="{name: 'catalog'}">
-      <div class="catalog__link_to_cart">Catalog</div>
+      <i class="fas fa-border-all"></i>
+      <div class="cart__link_to_cart">Catalog</div>
     </router-link>
     <h1 class="cart__title">Cart</h1>
     <p v-if="!cart_data.length">Zero products</p>
@@ -12,11 +13,15 @@
       @deleteFromCart="deleteFromCart(index)"
       @decrement="decrement(index)"
       @increment="increment(index)"
-      @updateCart="updateCart(index)"
+      @updateCart="updateCart(index, ...arguments)"
     ></cart-item>
     <div class="cart__total">
       <p class="total__name">Total:</p>
-      <p>{{CART_TOTAL_COST}} $</p>
+      <p>{{CART_TOTAL_COST}} {{CART[0] ? CART[0].currency : ''}}</p>
+      <router-link :to="{name: 'shipping'}">
+        <i class="fas fa-border-all"></i>
+        <div class="cart__link_to_shipping">Pay</div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -38,7 +43,8 @@ export default {
       "DELETE_FROM_CART",
       "INCREMENT_CART_ITEM",
       "DECREMENT_CART_ITEM",
-      "EDIT_CART_TOTAL_COST"
+      "EDIT_CART_TOTAL_COST",
+      "UPDATE_CART_ITEM"
     ]),
     increment(index) {
       this.INCREMENT_CART_ITEM(index);
@@ -52,13 +58,17 @@ export default {
       this.DELETE_FROM_CART(index);
       this.EDIT_CART_TOTAL_COST();
     },
-    updateCart(index, val){
-      console.log(index, val, arguments)
+    updateCart(index, val) {
+      this.UPDATE_CART_ITEM({
+        index,
+        val
+      });
+      this.EDIT_CART_TOTAL_COST();
     }
   },
   created() {},
   computed: {
-    ...mapGetters(["CART_TOTAL_COST"])
+    ...mapGetters(["CART_TOTAL_COST", "CART"])
   },
   props: {
     cart_data: {
@@ -91,11 +101,29 @@ export default {
     display: block;
     width: 100%;
   }
+  &__link_to_cart {
+    font-size: 10px;
+    position: absolute;
+    top: 37px;
+    color: #353535;
+  }
+  svg {
+    font-size: 39px;
+    color: $green-bg;
+  }
   .cart-item {
-    margin: $margin*2 auto;
+    margin: $margin * 2 auto;
   }
   .total__name {
     margin-right: $margin * 2;
+  }
+  .router-link-active {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    text-decoration: none;
   }
 }
 </style>

@@ -7,5 +7,8 @@ export default {
     },
     CART_TOTAL_COST(state){
         return state.cart_total_cost
+    },
+    SHIPPING(state){
+        return state.shipping
     }
 }

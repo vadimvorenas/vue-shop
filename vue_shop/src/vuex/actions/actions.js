@@ -1,4 +1,5 @@
 import axios from "axios"
+import shipping from '../../db/shipping'
 
 export default {
     GET_PRODUCTS_FROM_API({ commit }) {
@@ -58,11 +59,14 @@ export default {
     DECREMENT_CART_ITEM({ commit }, index) {
         commit('DECREMENT', index)
     },
-    UPDATE_CART_ITEM({ commit }, index, val) {
-        commit('UPDATE_CART', index, val)
+    UPDATE_CART_ITEM({ commit }, options) {
+        commit('UPDATE_CART', options)
     },
     EDIT_CART_TOTAL_COST({ commit }) {
         commit('SUM_CART_COST')
+    },
+    SET_SHIPPING({ commit }) {
+        commit('ADD_SHIPPING', shipping)
     }
 
 }

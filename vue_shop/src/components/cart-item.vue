@@ -12,12 +12,16 @@
         class="cart-item__quantity__input cart-item__quantity_child"
         type="text"
         :value="cart_item_data.quantity"
-        @change="updateQuantity"
+        @input="updateQuantity"
       />
       <span class="quantity__btn cart-item__quantity_child" @click="incrementItem">+</span>
-      <p class="cart-item__quantity__price cart-item__quantity_child">{{cart_item_data.price}}</p>
+      <p
+        class="cart-item__quantity__price cart-item__quantity_child nowrap"
+      >{{cart_item_data.price}} {{cart_item_data.currency}}</p>
+      <button class="cart-item__quantity__delete_btn" @click="deleteFromCart">
+        <i class="far fa-trash-alt"></i>
+      </button>
     </div>
-    <button @click="deleteFromCart"><i class="far fa-trash-alt"></i></button>
   </div>
 </template>
 <script>
@@ -52,9 +56,7 @@ export default {
       }
     }
   },
-  watch: {
-    // cart_item_data: function(value) {}
-  }
+  watch: {}
 };
 </script>
 <style scoped lang=scss>
@@ -66,6 +68,10 @@ export default {
   box-shadow: 0 0 8px 0 #e0e0e0;
   padding: $padding * 2;
   margin-bottom: $margin * 2;
+  flex-direction: row;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
   &__image {
     max-width: 130px;
     border-radius: 5px;
@@ -89,8 +95,10 @@ export default {
 
   &__quantity {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
+    max-width: 250px;
+    max-height: 30px;
     &__input {
       border: 1px solid #d2d2d2;
       border-radius: 4px;
@@ -103,6 +111,11 @@ export default {
       padding: $padding;
       font-size: 18px;
       margin: auto;
+      max-height: 20px;
+    }
+    &__delete_btn {
+      margin: auto;
+      margin-top: 5px;
     }
   }
 
