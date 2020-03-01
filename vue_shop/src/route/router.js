@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Catalog from '../components/catalog'
 import Cart from '../components/cart'
 import Shipping from '../components/shipping'
+import Buy from '../components/buy'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ let router = new Router({
             path: '/shipping',
             name: 'shipping',
             component: Shipping
+        },
+        {
+            path: '/buy',
+            name: 'buy',
+            component: Buy
         }
     ]
 })

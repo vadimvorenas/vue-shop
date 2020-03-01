@@ -1,7 +1,8 @@
 export default [
     {
         "name": "Free shipping",
-        "price": 0
+        "price": 0,
+        "selected": 'selected'
     },
     {
         "name": "Express shipping",

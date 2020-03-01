@@ -2,10 +2,10 @@
   <div class="cart">
     <router-link :to="{name: 'catalog'}">
       <i class="fas fa-border-all"></i>
-      <div class="cart__link_to_cart">Catalog</div>
+      <div class="cart__link_to_catalog">Catalog</div>
     </router-link>
     <h1 class="cart__title">Cart</h1>
-    <p v-if="!cart_data.length">Zero products</p>
+    <p class="m-auto" v-if="!cart_data.length">Zero products</p>
     <cart-item
       v-for="(item, index) in cart_data"
       :key="item.id"
@@ -18,9 +18,11 @@
     <div class="cart__total">
       <p class="total__name">Total:</p>
       <p>{{CART_TOTAL_COST}} {{CART[0] ? CART[0].currency : ''}}</p>
-      <router-link :to="{name: 'shipping'}">
-        <i class="fas fa-border-all"></i>
-        <div class="cart__link_to_shipping">Pay</div>
+      <router-link
+        :class="{'link-disabled': !CART.length, 'cart__link_to_shipping': true}"
+        :to="{name: 'shipping'}"
+      >
+        <div class="cart__link_to_shipping__btn">Buy</div>
       </router-link>
     </div>
   </div>
@@ -101,11 +103,23 @@ export default {
     display: block;
     width: 100%;
   }
-  &__link_to_cart {
+  &__link_to_catalog {
     font-size: 10px;
     position: absolute;
     top: 37px;
     color: #353535;
+  }
+  &__link_to_shipping {
+    margin: 15px;
+    text-decoration: none;
+    background: #dcd567;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-transform: uppercase;
+    color: #000;
+    &__btn {
+    }
   }
   svg {
     font-size: 39px;

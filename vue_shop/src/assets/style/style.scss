@@ -12,3 +12,18 @@
 .nowrap {
   white-space: nowrap;
 }
+
+.m-auto{
+  margin: auto;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.link-disabled {
+  pointer-events: none !important;
+  cursor: default !important;
+  color: #888 !important;
+  // background: #000 !important;
+}
