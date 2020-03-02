@@ -58,8 +58,6 @@ export default {
       },
       formValid: {
         name: false,
-        email: false,
-        phone: false,
         address: false
       },
       selectShipping: 0
@@ -71,6 +69,7 @@ export default {
       let value = e.target.value;
       if (value && value.length < 3) {
         this.errors.name = "Min length 3";
+        this.formValid.name = false;
       } else {
         this.errors.name = false;
         this.formValid.name = true;
@@ -80,6 +79,7 @@ export default {
       let value = e.target.value;
       if (value && value.length < 5) {
         this.errors.address = "Invalid address";
+        this.formValid.address = false;
       } else {
         this.errors.address = false;
         this.formValid.address = true;
@@ -92,7 +92,6 @@ export default {
         this.errors.email = "Invalid e-mail";
       } else {
         this.errors.email = false;
-        this.formValid.email = true;
       }
     },
     checkPhone(e) {
@@ -103,7 +102,6 @@ export default {
         this.errors.phone = "Invalid phone";
       } else {
         this.errors.phone = false;
-        this.formValid.phone = true;
       }
     },
     changeForm() {
@@ -147,11 +145,19 @@ function validatePhone(phone) {
   &__form {
     width: 50%;
     margin: auto;
+    @media screen and (max-width: 768px) {
+          width: 80%;
+          min-width: 300px;
+      }
     > div {
       display: flex;
-      height: 25px;
+      height: 30px;
       margin: $margin * 2 auto;
       position: relative;
+      @media screen and (max-width: 768px) {
+          flex-direction: column;
+          margin: $margin*5 auto;
+      }
     }
     > div > p,
     input,
@@ -172,12 +178,14 @@ function validatePhone(phone) {
       margin: 15px;
       text-decoration: none;
       background: $green-bg;
-      padding: 5px 15px;
+      padding: $padding 15px;
       border-radius: 2px;
       border: 1px solid black;
       text-transform: uppercase;
       color: #000;
       display: block;
+      width: 150px;
+      margin: auto;
       &__btn {
       }
     }
@@ -190,6 +198,9 @@ function validatePhone(phone) {
       width: 50%;
       left: 0;
       margin: -10px 0 5px auto;
+      @media screen and (max-width: 768px) {
+          width: 100%;
+      }
     }
   }
 }

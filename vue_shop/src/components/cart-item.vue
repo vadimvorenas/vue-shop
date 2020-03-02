@@ -1,6 +1,7 @@
 <template>
   <div class="cart-item">
     <img class="cart-item__image" :src="cart_item_data.img" alt="img" />
+
     <div class="cart-item__info">
       <p class="cart-item__title">{{cart_item_data.name}}</p>
       <p class="cart-item__description">{{cart_item_data.description}}</p>
