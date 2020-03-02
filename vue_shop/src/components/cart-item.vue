@@ -113,6 +113,7 @@ export default {
       font-size: 18px;
       margin: auto;
       max-height: 20px;
+      box-sizing: content-box;
     }
     &__delete_btn {
       margin: auto;

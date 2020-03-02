@@ -1,5 +1,9 @@
 @import "variables.scss";
 
+h1, p{
+  margin: $margin*2 auto;
+}
+
 .btn {
   padding: $padding $padding * 2;
   background: $green-bg;

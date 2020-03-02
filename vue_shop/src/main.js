@@ -5,11 +5,13 @@ import store from './vuex/store'
 import router from './route/router'
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
 import '../node_modules/@fortawesome/fontawesome-free/js/all'
+import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
   store,
-  router,
+  vuetify,
+  router
 }).$mount('#app')

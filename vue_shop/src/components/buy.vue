@@ -35,7 +35,7 @@ export default {
     top: 37px;
     color: #353535;
   }
-  
+
   svg {
     font-size: 39px;
     color: $green-bg;

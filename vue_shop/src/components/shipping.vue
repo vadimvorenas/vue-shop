@@ -124,7 +124,7 @@ export default {
   props: {},
   mounted() {
     this.SET_SHIPPING();
-    console.log(this.CART_TOTAL_COST )
+    console.log(this.CART_TOTAL_COST);
     if (this.CART_TOTAL_COST > 300) {
       this.selectShipping = 3;
     }
@@ -146,17 +146,17 @@ function validatePhone(phone) {
     width: 50%;
     margin: auto;
     @media screen and (max-width: 768px) {
-          width: 80%;
-          min-width: 300px;
-      }
+      width: 80%;
+      min-width: 300px;
+    }
     > div {
       display: flex;
       height: 30px;
       margin: $margin * 2 auto;
       position: relative;
       @media screen and (max-width: 768px) {
-          flex-direction: column;
-          margin: $margin*5 auto;
+        flex-direction: column;
+        margin: $margin * 5 auto;
       }
     }
     > div > p,
@@ -164,15 +164,24 @@ function validatePhone(phone) {
     select {
       display: inline-block;
       flex: 50%;
+      box-sizing: content-box;
     }
     > div > p {
       text-align: left;
       margin: auto;
     }
     > div > input {
+      border: 1px solid gray;
+      border-radius: 2px;
+      padding: $padding;
     }
     div > select {
       box-sizing: content-box;
+      border: 1px solid gray;
+      border-radius: 2px;
+      padding: 2px $padding;
+      -moz-appearance: menulist;
+      -webkit-appearance: menulist;
     }
     &__link_to_pay {
       margin: 15px;
@@ -199,7 +208,7 @@ function validatePhone(phone) {
       left: 0;
       margin: -10px 0 5px auto;
       @media screen and (max-width: 768px) {
-          width: 100%;
+        width: 100%;
       }
     }
   }

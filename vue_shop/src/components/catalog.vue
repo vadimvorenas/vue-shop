@@ -84,6 +84,7 @@ export default {
     p {
       margin: auto;
       padding: $padding * 0.8;
+      box-sizing: content-box;
     }
   }
   &__quantity {
