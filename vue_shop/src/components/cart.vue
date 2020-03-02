@@ -17,7 +17,7 @@
     ></cart-item>
     <div class="cart__total">
       <p class="total__name">Total:</p>
-      <p>{{CART_TOTAL_COST}} {{CART[0] ? CART[0].currency : ''}}</p>
+      <p class="total__cost">{{CART_TOTAL_COST}} {{CART[0] ? CART[0].currency : ''}}</p>
       <router-link
         :class="{'link-disabled': !CART.length, 'cart__link_to_shipping': true}"
         :to="{name: 'shipping'}"
@@ -98,6 +98,9 @@ export default {
     background: $green-bg;
     color: white;
     font-size: 20px;
+    .total__cost {
+      margin: $margin * 2;
+    }
   }
   &__title {
     display: block;
@@ -118,6 +121,7 @@ export default {
     border: 1px solid black;
     text-transform: uppercase;
     color: #000;
+    margin-right: auto;
     &__btn {
     }
   }

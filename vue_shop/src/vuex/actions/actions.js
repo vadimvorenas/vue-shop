@@ -67,6 +67,10 @@ export default {
     },
     SET_SHIPPING({ commit }) {
         commit('ADD_SHIPPING', shipping)
+    },
+    EMPTY_CART_ACTION({commit}){
+        commit('EMPTY_CART')
+        return true
     }
 
 }

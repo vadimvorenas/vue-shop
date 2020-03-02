@@ -36,7 +36,7 @@
         :class="{'link-disabled': !isValid, 'shipping__form__link_to_pay': true}"
         :to="{name: 'buy'}"
       >
-        <div class="shipping__form__link_to_pay__btn">Pay</div>
+        <div @click="clickBuy" class="shipping__form__link_to_pay__btn">Pay</div>
       </router-link>
     </div>
   </div>
@@ -64,7 +64,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["SET_SHIPPING"]),
+    ...mapActions(["SET_SHIPPING", 'EMPTY_CART_ACTION']),
     checkName(e) {
       let value = e.target.value;
       if (value && value.length < 3) {
@@ -87,7 +87,6 @@ export default {
     },
     checkEmail(e) {
       let value = e.target.value;
-      console.log(value);
       if (value && !validateEmail(value)) {
         this.errors.email = "Invalid e-mail";
       } else {
@@ -115,16 +114,18 @@ export default {
         }
       }
       this.isValid = is_valid_form;
+    },
+    clickBuy(){
+        this.EMPTY_CART_ACTION()
     }
   },
   created() {},
   computed: {
-    ...mapGetters(["SHIPPING", "CART_TOTAL_COST"])
+    ...mapGetters(["SHIPPING", "CART_TOTAL_COST", 'PRODUCTS'])
   },
   props: {},
   mounted() {
     this.SET_SHIPPING();
-    console.log(this.CART_TOTAL_COST);
     if (this.CART_TOTAL_COST > 300) {
       this.selectShipping = 3;
     }

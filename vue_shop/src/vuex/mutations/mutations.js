@@ -21,6 +21,10 @@ export default {
     REMOVE_FROM_CART: (state, index) => {
         state.cart.splice(index, 1)
     },
+    EMPTY_CART: (state)=>{
+        console.log('EMPTY_CART')
+        state.cart = []
+    },
     INCREMENT: (state, index) => {
         let quantity_tmp = checkQuantity(state.cart[index].quantity + 1)
         state.cart[index].quantity = quantity_tmp
