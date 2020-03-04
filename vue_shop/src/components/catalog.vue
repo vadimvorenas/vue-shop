@@ -15,6 +15,11 @@
         v-bind:product_data="product"
         @addToCart="addToCart"
       ></catalog-item>
+        <skeleton-card
+        v-for="index in 10"
+        :key="'skeleton'+index"
+        v-bind:loading="PRODUCTS"
+        ></skeleton-card>
     </div>
   </div>
 </template>
@@ -22,10 +27,12 @@
 import CatalogItem from "./catalog-item";
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import SkeletonCard from "./skeleton-card";
 export default {
   name: "catalog",
   components: {
-    CatalogItem
+    CatalogItem,
+    SkeletonCard
   },
   data() {
     return {};

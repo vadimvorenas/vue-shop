@@ -1,36 +1,29 @@
 <template>
   <div class="catalog-item">
-    <v-sheet class="catalog-item__skeleton">
+    <v-card class="mx-auto" max-width="320">
       <v-skeleton-loader
         :loading="loading"
+        height="calc(10px + 7vw)"
+        width="60%"
+        max-width="300px"
         class="m-auto image"
-        width="128"
-        height="128"
         type="image"
       >
-        <img class="catalog-item__image" :src="product_data.img" />
+        <figure v-lazyload>
+          <img class="m-auto" :data-url="product_data.img" />
+        </figure>
       </v-skeleton-loader>
-      <v-skeleton-loader
-        :loading="loading"
-        width="50"
-        height="20"
-        class="m-auto skeleton_p"
-        type="image"
-      >
-        <p class="catalog-item__name">{{product_data.name}}</p>
-      </v-skeleton-loader>
-      <v-skeleton-loader
-        :loading="loading"
-        width="50"
-        height="20"
-        class="m-auto skeleton_p"
-        type="image"
-      >
-        <p class="catalog-item__price">Price: {{product_data.price}}{{product_data.currency}}</p>
-      </v-skeleton-loader>
-    </v-sheet>
 
-    <button class="catalog-item__add_to_cart_btn btn" @click="addToCart">Add to cart</button>
+      <v-card-subtitle class="pb-0">{{product_data.name}}</v-card-subtitle>
+
+      <v-card-text class="text--primary">
+        <div>Price: {{product_data.price}}{{product_data.currency}}</div>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn color="rgba(8, 0, 255, 0.5)" class="m-auto" @click="addToCart" text>Add to cart</v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 <script>
@@ -69,10 +62,9 @@ export default {
 </script>
 <style scoped lang="scss">
 .catalog-item {
-  flex-basis: 25%;
-  box-shadow: 0 0 8px 0 #e0e0e0;
+  flex-basis: 17%;
   padding: $padding * 2;
-  margin: auto $margin * 2 $margin * 2 $margin * 2;
+  margin: $margin * 2 auto;
   &__skeleton {
     div {
       margin: $margin * 2 auto;
@@ -84,9 +76,18 @@ export default {
       }
     }
   }
-  img {
-    width: 128px;
-    height: 128px;
+  figure {
+    width: 60%;
+    height: auto;
+    min-height: calc(10px + 7vw);
+    border-radius: 5px;
+    margin: auto;
+    padding: 5px;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
   }
 }
 </style>
