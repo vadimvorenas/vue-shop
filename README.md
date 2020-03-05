@@ -1,7 +1,7 @@
 # vue-shop
 Usage project
 
-1.cd vue_shop/dist
+1.cd vue_shop/dist 
 2.Open in browser index.html
 
 OR
